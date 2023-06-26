@@ -27,9 +27,9 @@ class Database extends Config
     public array $default = [
         'DSN'      => '',
         'hostname' => 'localhost',
-        'username' => '',
-        'password' => '',
-        'database' => '',
+        'username' => 'root',
+        'password' => '1234',
+        'database' => 'prod',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
@@ -50,12 +50,12 @@ class Database extends Config
      */
     public array $tests = [
         'DSN'         => '',
-        'hostname'    => '127.0.0.1',
-        'username'    => '',
-        'password'    => '',
-        'database'    => ':memory:',
-        'DBDriver'    => 'SQLite3',
-        'DBPrefix'    => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE FOR CI DEVS
+        'hostname'    => 'localhost',
+        'username'    => 'root',
+        'password'    => '1234',
+        'database'    => 'prod',
+        'DBDriver'    => 'MySQLi',
+        'DBPrefix'    => '',
         'pConnect'    => false,
         'DBDebug'     => true,
         'charset'     => 'utf8',
@@ -66,8 +66,6 @@ class Database extends Config
         'strictOn'    => false,
         'failover'    => [],
         'port'        => 3306,
-        'foreignKeys' => true,
-        'busyTimeout' => 1000,
     ];
 
     public function __construct()
@@ -77,8 +75,8 @@ class Database extends Config
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
         // we don't overwrite live data on accident.
-        if (ENVIRONMENT === 'testing') {
-            $this->defaultGroup = 'tests';
+        if (ENVIRONMENT === 'development') {
+            $this->defaultGroup = 'default';
         }
     }
 }
