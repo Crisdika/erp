@@ -1,10 +1,26 @@
 <?php
 
-class Usuario
+namespace App\Models\entities;
+
+use CodeIgniter\Database\ConnectionInterface;
+use CodeIgniter\Model;
+use CodeIgniter\Validation\ValidationInterface;
+
+class Usuario extends Model
 {
     private $id;
     private $email;
     private $senha;
+
+    protected $table;
+    protected $primaryKey;
+    protected $allowedFields;
+
+    public function __construct()
+    {
+
+    }
+
 
     public function getId()
     {
