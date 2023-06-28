@@ -14,7 +14,7 @@
     <div class="d-flex justify-content-center">
         <div class="col-3 rounded shadow-sm bg-white">
             <div class="px-5">
-                <form action="">
+                <form action="" method="get" action="/login">
                     <div class="text-center">
                         <h3 class="py-5">Login</h3>
                     </div>
@@ -25,7 +25,7 @@
                     <div class="form-group my-3">
                         <label for="senha">Senha:</label>
                         <input type="password" name="senha" id="senha" class="form-control" required>
-                    </div>dsada
+                    </div>
                     <div class="form-group py-2 text-center">
                         <button type="submit" class="btn btn-primary px-5">Login</button>
                     </div>
