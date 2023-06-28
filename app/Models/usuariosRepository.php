@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Models;
-use Usuario;
+use App\Models\entities\Usuario;
 use CodeIgniter\Model;
-
 class usuariosRepository extends Model
 {
     public Usuario $usuario;
@@ -15,9 +14,6 @@ class usuariosRepository extends Model
     }
 
     public function selectUsuario($formUsuario){
-
-
+        $this->usuario->where($formUsuario->email, $formUsuario->senha)->first();
     }
-
-
 }

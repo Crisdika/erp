@@ -8,6 +8,10 @@ use CodeIgniter\Validation\ValidationInterface;
 
 class Usuario extends Model
 {
+    private $id;
+    private $email;
+    private $senha;
+
     protected $table;
     protected $primaryKey;
     protected $allowedFields;
