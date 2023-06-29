@@ -13,7 +13,7 @@ class UsuarioController extends Controller
         $this->usuariosRepository = new usuariosRepository();
     }
 
-    public function teste(){
+    public function logar(){
         if($this->request->getMethod() === 'post'){
             $dadosform = $this->request->getPost();
             $this->usuariosRepository->selectUsuario($dadosform);

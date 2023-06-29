@@ -14,7 +14,7 @@
     <div class="d-flex justify-content-center">
         <div class="col-3 rounded shadow-sm bg-white">
             <div class="px-5">
-                <form method="post" action="/login/teste">
+                <form method="post" action="/login/logar">
                     <div class="text-center">
                         <h3 class="py-5">Login</h3>
                     </div>
