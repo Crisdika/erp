@@ -26,7 +26,7 @@ class Database extends Config
      */
     public array $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
+        'hostname' => '127.0.0.1',
         'username' => 'root',
         'password' => '1234',
         'database' => 'prod',
@@ -49,8 +49,8 @@ class Database extends Config
      * running PHPUnit database tests.
      */
     public array $tests = [
-        'DSN'         => '',
-        'hostname'    => 'localhost',
+        'DSN'         => '127',
+        'hostname'    => '127.0.0.1',
         'username'    => 'root',
         'password'    => '1234',
         'database'    => 'prod',

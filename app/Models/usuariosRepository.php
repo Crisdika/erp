@@ -6,14 +6,21 @@ use CodeIgniter\Model;
 class usuariosRepository extends Model
 {
     public Usuario $usuario;
+//    public $stmt;
 
+//    public function __construct()
+//    {
+//
+//        $this->stmt = \Config\Database::connect();
+//    }
 
-    public function __construct()
-    {
+    public function selectUsuario($dadosform){
         $this->usuario = new Usuario();
+        $result = $this->usuario->where('email',$dadosform['email'])->first();
+        print_r($result);
     }
 
-    public function selectUsuario($formUsuario){
-        $this->usuario->where($formUsuario->email, $formUsuario->senha)->first();
+    public function teste(){
+        return 'alo';
     }
 }
