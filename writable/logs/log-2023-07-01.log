@@ -1,0 +1,57 @@
+CRITICAL - 2023-07-01 13:14:29 --> Call to undefined method CodeIgniter\Database\MySQLi\Builder::first()
+in APPPATH\Models\usuariosRepository.php on line 25.
+ 1 APPPATH\Controllers\UsuarioController.php(23): App\Models\usuariosRepository->selectUsuario('asdasdada@gmail.com', '123456')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\UsuarioController->logar()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UsuarioController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+ERROR - 2023-07-01 13:21:00 --> Error connecting to the database: mysqli_sql_exception: Unknown database 'prod' in C:\erp\erp\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\erp\erp\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('127.0.0.1', 'root', '1234', 'prod', 3306, '', 0)
+#1 C:\erp\erp\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\erp\erp\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\erp\erp\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\erp\erp\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\erp\erp\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\erp\erp\app\Models\usuariosRepository.php(24): CodeIgniter\BaseModel->first()
+#7 C:\erp\erp\app\Controllers\UsuarioController.php(23): App\Models\usuariosRepository->selectUsuario('asdasdada@gmail...', '123456')
+#8 C:\erp\erp\system\CodeIgniter.php(934): App\Controllers\UsuarioController->logar()
+#9 C:\erp\erp\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UsuarioController))
+#10 C:\erp\erp\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\erp\erp\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#12 C:\erp\erp\system\Commands\Server\rewrite.php(47): require_once('C:\\erp\\erp\\publ...')
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Unknown database 'prod' in C:\erp\erp\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\erp\erp\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\erp\erp\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\erp\erp\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\erp\erp\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\erp\erp\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#5 C:\erp\erp\app\Models\usuariosRepository.php(24): CodeIgniter\BaseModel->first()
+#6 C:\erp\erp\app\Controllers\UsuarioController.php(23): App\Models\usuariosRepository->selectUsuario('asdasdada@gmail...', '123456')
+#7 C:\erp\erp\system\CodeIgniter.php(934): App\Controllers\UsuarioController->logar()
+#8 C:\erp\erp\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UsuarioController))
+#9 C:\erp\erp\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\erp\erp\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 C:\erp\erp\system\Commands\Server\rewrite.php(47): require_once('C:\\erp\\erp\\publ...')
+#12 {main}
+CRITICAL - 2023-07-01 13:21:00 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'prod'
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `login`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\usuariosRepository.php(24): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\UsuarioController.php(23): App\Models\usuariosRepository->selectUsuario('asdasdada@gmail.com', '123456')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\UsuarioController->logar()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UsuarioController))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
