@@ -8,15 +8,22 @@ use CodeIgniter\Validation\ValidationInterface;
 
 class usuariosRepository extends Model
 {
-    public Usuario $usuario;
+    protected $table = 'login';
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['email','senha'];
 
     public function __construct()
     {
-        $this->usuario = new Usuario();
+        parent::__construct();
+        $db = \Config\Database::connect();
+        $this->builder = $db->table($this->table);
     }
 
-    public function selectUsuario($dadosform){
-        $result = $this->usuario->where('email',$dadosform['email'])->first();
+    public function selectUsuario($email,$senha){
+        $result = $this
+            ->where('email',$email)
+            ->where('senha',$senha)
+            ->first();
         if($result){
             echo'Acho';
         }else{

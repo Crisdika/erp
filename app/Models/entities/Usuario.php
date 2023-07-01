@@ -8,14 +8,34 @@ use CodeIgniter\Validation\ValidationInterface;
 
 class Usuario extends Model
 {
-    protected $table = 'login';
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['email','senha'];
+    private $id;
+    private $senha;
+    private $email;
 
-    public function __construct()
+    public function getId()
     {
-        parent::__construct();
-        $db = \Config\Database::connect();
-        $this->builder = $db->table($this->table);
+        return $this->id;
     }
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+    public function setSenha($senha): void
+    {
+        $this->senha = $senha;
+    }
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+
 }
