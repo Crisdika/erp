@@ -24,10 +24,6 @@ class usuariosRepository extends Model
             ->where('email',$email)
             ->where('senha',$senha)
             ->first();
-        if($result){
-            echo'Acho';
-        }else{
-            echo'Não achou';
-        }
+        return $result;
     }
 }
