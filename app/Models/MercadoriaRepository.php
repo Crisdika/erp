@@ -12,15 +12,16 @@ class MercadoriaRepository extends Model
     protected $table = 'mercadoria';
     protected $primaryKey = 'id';
     protected $allowedFields = ['desc','valor','saldo'];
-    private $mercadoria;
+    public $mercadoria;
 
     public function __construct()
     {
+        parent::__construct();
         $db = \Config\Database::connect();
         $this->builder = $db->table($this->table);
     }
 
     public function InsertMercadoria($dadosMercadoria){
-        var_dump($dadosMercadoria);
+        var_dump($dadosMercadoria->getDescricao());
     }
 }

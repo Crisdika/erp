@@ -75,7 +75,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="/cadastrar/mercadoria">
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
                         <input type="text" class="form-control" id="descricao" placeholder="Digite a descrição da mercadoria">

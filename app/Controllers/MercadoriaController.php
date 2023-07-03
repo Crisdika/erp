@@ -8,8 +8,8 @@ use App\Models\MercadoriaRepository;
 
 class MercadoriaController extends BaseController
 {
-    private $mercadoria;
-    private $mercadoriaRepository;
+    public $mercadoria;
+    public $mercadoriaRepository;
 
     public function __construct()
     {
