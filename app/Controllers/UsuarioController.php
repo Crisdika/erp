@@ -17,11 +17,8 @@ class UsuarioController extends Controller
     }
 
     public function logar(){
-        if($this->request->getMethod() === 'post'){
             $this->usuario->setEmail($this->request->getPost('email'));
             $this->usuario->setSenha($this->request->getPost('senha'));
-            $this->usuariosRepository->selectUsuario($this->usuario->getEmail(),$this->usuario->getSenha());
-        }
-
+            $this->usuariosRepository->selectUsuario($this->usuario);
     }
 }
