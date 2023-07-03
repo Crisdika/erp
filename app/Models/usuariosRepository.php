@@ -19,11 +19,10 @@ class usuariosRepository extends Model
         $this->builder = $db->table($this->table);
     }
 
-    public function selectUsuario($email,$senha){
+    public function selectUsuario($usuario){
         $result = $this
-            ->where('email',$email)
-            ->where('senha',$senha)
+            ->where('email',$usuario->getEmail())
+            ->where('senha',$usuario->getSenha())
             ->first();
-        return $result;
     }
 }
