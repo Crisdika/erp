@@ -8,6 +8,7 @@ class Mercadoria
     private $descricao;
     private $saldo;
     private $valor;
+
     public function getId()
     {
         return $this->id;

@@ -6,7 +6,7 @@ use CodeIgniter\Database\ConnectionInterface;
 use CodeIgniter\Model;
 use CodeIgniter\Validation\ValidationInterface;
 
-class Usuario extends Model
+class Usuario
 {
     private $id;
     private $senha;
