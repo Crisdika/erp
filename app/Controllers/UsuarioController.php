@@ -20,5 +20,6 @@ class UsuarioController extends Controller
             $this->usuario->setEmail($this->request->getPost('email'));
             $this->usuario->setSenha($this->request->getPost('senha'));
             $this->usuariosRepository->selectUsuario($this->usuario);
+            return redirect()->to('/dashboard');
     }
 }

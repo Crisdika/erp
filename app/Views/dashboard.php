@@ -8,18 +8,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        .btn-mercadoria {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .btn-cliente {
-            background-color: #6c757d;
-            color: #fff;
-        }
-
         .btn-venda {
-            background-color: #fff;
             color: #000;
             border: 1px solid #000;
         }
@@ -112,21 +101,23 @@
                 <table id="mercadoriaTable" class="table table-striped">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Descrição</th>
                         <th>Saldo</th>
                         <th>Valor</th>
+                        <th>Ação</th>
                     </tr>
                     </thead>
 
                     <?php foreach ($mercadoriaReposiroty->listarMercadoria() as $mercadoria): ?>
                         <tbody>
                             <tr>
-                                <td><?= $mercadoriaReposiroty['desc'] ?></td>
-                                <td><?= $mercadoriaReposiroty['saldo']?> </td>
-                                <td><?= $mercadoriaReposiroty['valor']?> </td>
+                                <td><?= $mercadoria['id']?></td>
+                                <td><?= $mercadoria['desc']?></td>
+                                <td><?= $mercadoria['saldo']?> </td>
+                                <td><?= $mercadoria['valor']?> </td>
+                                <td><button class="btn btn-primary">Editar</button></td>
                             </tr>
-
-                        <!-- Adicione aqui os dados da tabela conforme necessário -->
                         </tbody>
                     <?php endforeach; ?>
                 </table>
@@ -147,13 +138,46 @@
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-between">
-                    <button class="btn btn-primary col-5">Cadastrar Cliente</button>
+                    <button class="btn btn-primary col-5" data-toggle="modal" data-target="#modalCadastrarCliente">Cadastrar Cliente</button>
                     <button class="btn btn-secondary col-5">Consultar Cliente</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal Cadastrar Cliente -->
+<div class="modal fade" id="modalCadastrarCliente" tabindex="-1" role="dialog" aria-labelledby="modalCadastrarClienteLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastrar Novo Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulário de cadastro de cliente -->
+                <form method="post" action="/cadastrar/cliente">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do cliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail do cliente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone do cliente">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Modal Venda -->
 <div class="modal fade" id="modalVenda" tabindex="-1" role="dialog" aria-labelledby="modalVendaLabel" aria-hidden="true">

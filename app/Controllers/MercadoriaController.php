@@ -32,6 +32,6 @@ class MercadoriaController extends Controller
             $this->mercadoria->setValor($this->request->getPost('valor'));
         }
         $this->mercadoriaRepository->InsertMercadoria($this->mercadoria);
-
+        return redirect()->to('/dashboard');
     }
 }
