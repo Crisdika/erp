@@ -19,18 +19,16 @@ class MercadoriaRepository extends Model
     }
 
     public function InsertMercadoria($dadosMercadoria){
-
         $data = [
             'desc'  => $dadosMercadoria->getDescricao(),
             'valor' => $dadosMercadoria->getValor(),
             'saldo' => $dadosMercadoria->getSaldo()
             ];
         $this->insert($data);
-        return redirect()->to('/dashboard');
     }
 
     public function listarMercadoria(){
-
+        $mercadorias = $this->findAll();
+        return $mercadorias;
     }
-
 }

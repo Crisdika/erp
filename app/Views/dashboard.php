@@ -1,8 +1,11 @@
+<?php $mercadoriaReposiroty = new \App\Models\MercadoriaRepository();?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .btn-mercadoria {
@@ -57,7 +60,7 @@
             <div class="modal-body">
                 <div class="d-flex justify-content-between">
                     <button class="btn btn-primary col-5" data-toggle="modal" data-target="#modalCadastrarMercadoria">Cadastrar Mercadoria</button>
-                    <button class="btn btn-secondary col-5">Consultar Mercadoria</button>
+                    <button class="btn btn-secondary col-5" data-toggle="modal" data-target="#modalConsultarMercadoria">Consultar Mercadoria</button>
                 </div>
             </div>
         </div>
@@ -75,21 +78,58 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/cadastrar/mercadoria">
+                <form method="post" action="/cadastrar/mercadoria">
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
-                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição da mercadoria">
+                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição da mercadoria" required>
                     </div>
                     <div class="form-group">
                         <label for="saldo">Saldo:</label>
-                        <input type="text" class="form-control" id="saldo" name="saldo" placeholder="Digite o saldo da mercadoria">
+                        <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Digite o saldo da mercadoria">
                     </div>
                     <div class="form-group">
                         <label for="valor">Valor:</label>
-                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Digite o valor da mercadoria">
+                        <input type="text" class="form-control" id="valor" name = "valor" placeholder="Digite o valor da mercadoria">
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Consultar Mercadoria -->
+<div class="modal fade" id="modalConsultarMercadoria" tabindex="-1" role="dialog" aria-labelledby="modalConsultarMercadoriaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalConsultarMercadoriaLabel">Consultar Mercadoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table id="mercadoriaTable" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Saldo</th>
+                        <th>Valor</th>
+                    </tr>
+                    </thead>
+
+                    <?php foreach ($mercadoriaReposiroty->listarMercadoria() as $mercadoria): ?>
+                        <tbody>
+                            <tr>
+                                <td><?= $mercadoriaReposiroty['desc'] ?></td>
+                                <td><?= $mercadoriaReposiroty['saldo']?> </td>
+                                <td><?= $mercadoriaReposiroty['valor']?> </td>
+                            </tr>
+
+                        <!-- Adicione aqui os dados da tabela conforme necessário -->
+                        </tbody>
+                    <?php endforeach; ?>
+                </table>
             </div>
         </div>
     </div>
@@ -136,7 +176,12 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#mercadoriaTable').DataTable();
+    });
+</script>
 </body>
 </html>

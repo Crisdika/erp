@@ -21,7 +21,6 @@ class MercadoriaController extends Controller
     public function cadastrarMercadoria(){
 
         $this->mercadoria->setDescricao($this->request->getPost('descricao'));
-
         if($this->request->getPost('saldo') == '' OR null){
             $this->mercadoria->setSaldo('0');
         }
