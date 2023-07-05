@@ -32,7 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->post('/login/logar', '\App\Controllers\UsuarioController::logar');
 $routes->get('/dashboard','\App\Controllers\DashboardController::index');
-$routes->post('/cadastrar/mercadoria', '\App\Controllers\MercadoriaController::CadastrarMercadoria');
+$routes->post('/cadastrar/mercadoria', '\App\Controllers\MercadoriaController::cadastrarMercadoria');
 
 /*
  * --------------------------------------------------------------------

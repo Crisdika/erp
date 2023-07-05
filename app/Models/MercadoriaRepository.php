@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Models;
-
-use App\Models\entities\Mercadoria;
 use CodeIgniter\Database\ConnectionInterface;
 use CodeIgniter\Model;
 use CodeIgniter\Validation\ValidationInterface;
@@ -12,7 +10,6 @@ class MercadoriaRepository extends Model
     protected $table = 'mercadoria';
     protected $primaryKey = 'id';
     protected $allowedFields = ['desc','valor','saldo'];
-    public $mercadoria;
 
     public function __construct()
     {
@@ -22,6 +19,18 @@ class MercadoriaRepository extends Model
     }
 
     public function InsertMercadoria($dadosMercadoria){
-        var_dump($dadosMercadoria->getDescricao());
+
+        $data = [
+            'desc'  => $dadosMercadoria->getDescricao(),
+            'valor' => $dadosMercadoria->getValor(),
+            'saldo' => $dadosMercadoria->getSaldo()
+            ];
+        $this->insert($data);
+        return redirect()->to('/dashboard');
     }
+
+    public function listarMercadoria(){
+
+    }
+
 }

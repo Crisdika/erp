@@ -75,18 +75,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/cadastrar/mercadoria">
+                <form method="POST" action="/cadastrar/mercadoria">
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
-                        <input type="text" class="form-control" id="descricao" placeholder="Digite a descrição da mercadoria">
+                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição da mercadoria">
                     </div>
                     <div class="form-group">
                         <label for="saldo">Saldo:</label>
-                        <input type="text" class="form-control" id="saldo" placeholder="Digite o saldo da mercadoria">
+                        <input type="text" class="form-control" id="saldo" name="saldo" placeholder="Digite o saldo da mercadoria">
                     </div>
                     <div class="form-group">
                         <label for="valor">Valor:</label>
-                        <input type="text" class="form-control" id="valor" placeholder="Digite o valor da mercadoria">
+                        <input type="text" class="form-control" id="valor" name="valor" placeholder="Digite o valor da mercadoria">
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>

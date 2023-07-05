@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
+use CodeIgniter\Controller;
 use App\Models\entities\Mercadoria;
 use App\Models\MercadoriaRepository;
 
-class MercadoriaController extends BaseController
+
+class MercadoriaController extends Controller
 {
     public $mercadoria;
     public $mercadoriaRepository;
@@ -17,10 +18,21 @@ class MercadoriaController extends BaseController
         $this->mercadoriaRepository = new MercadoriaRepository();
     }
 
-    public function CadastrarMercadoria(){
+    public function cadastrarMercadoria(){
+
         $this->mercadoria->setDescricao($this->request->getPost('descricao'));
-        $this->mercadoria->setSaldo($this->request->getPost('saldo'));
-        $this->mercadoria->setValor($this->request->getPost('valor'));
+
+        if($this->request->getPost('saldo') == '' OR null){
+            $this->mercadoria->setSaldo('0');
+        }
+        if ($this->request->getPost('valor') == '' OR null) {
+            $this->mercadoria->setValor('0');
+        }
+        else{
+            $this->mercadoria->setSaldo($this->request->getPost('saldo'));
+            $this->mercadoria->setValor($this->request->getPost('valor'));
+        }
         $this->mercadoriaRepository->InsertMercadoria($this->mercadoria);
+
     }
 }
