@@ -29,10 +29,21 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+
+//gets
 $routes->get('/', 'Home::index');
-$routes->post('/login/logar', '\App\Controllers\UsuarioController::logar');
 $routes->get('/dashboard','\App\Controllers\DashboardController::index');
+$routes->get('/obter/mercadoria(:num)', '\App\Controllers\MercadoriaController::obterMercadoria/$');
+
+//Posts
+$routes->post('/login/logar', '\App\Controllers\UsuarioController::logar');
 $routes->post('/cadastrar/mercadoria', '\App\Controllers\MercadoriaController::cadastrarMercadoria');
+$routes->post('/cadastrar/cliente','\App\Controllers\ClienteController::cadastrarCliente');
+
+
+//$routes->post('/atualizar/mercadoria/(:num)', 'App\Controllers\MercadoriaController::editarMercadoria/$1');
+
 
 /*
  * --------------------------------------------------------------------

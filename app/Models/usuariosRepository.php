@@ -10,7 +10,7 @@ class usuariosRepository extends Model
 {
     protected $table = 'login';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['email','senha'];
+    protected $allowedFields = ['email', 'senha', 'nome'];
 
     public function __construct()
     {
@@ -19,10 +19,12 @@ class usuariosRepository extends Model
         $this->builder = $db->table($this->table);
     }
 
-    public function selectUsuario($usuario){
+    public function selectUsuario($usuario)
+    {
         $result = $this
-            ->where('email',$usuario->getEmail())
-            ->where('senha',$usuario->getSenha())
+            ->where('email', $usuario->getEmail())
+            ->where('senha', $usuario->getSenha())
             ->first();
+        return $result;
     }
 }

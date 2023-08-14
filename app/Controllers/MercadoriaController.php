@@ -34,4 +34,10 @@ class MercadoriaController extends Controller
         $this->mercadoriaRepository->InsertMercadoria($this->mercadoria);
         return redirect()->to('/dashboard');
     }
+
+    public function obterMercadoria() {
+        $mercadoriaId = $this->request->getGet('mercadoriaId');
+        $mercadoria = $this->response->setJSON($this->mercadoriaRepository->obeterMercadoria($mercadoriaId));
+        var_dump($mercadoria);
+    }
 }
