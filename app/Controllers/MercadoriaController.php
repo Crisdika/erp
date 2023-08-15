@@ -37,7 +37,12 @@ class MercadoriaController extends Controller
 
     public function obterMercadoria() {
         $mercadoriaId = $this->request->getGet('mercadoriaId');
-        $mercadoria = $this->response->setJSON($this->mercadoriaRepository->obeterMercadoria($mercadoriaId));
-        var_dump($mercadoria);
+        $mercadoria = $this->mercadoriaRepository->obeterMercadoria($mercadoriaId);
+
+        if(!$mercadoria){
+            return $this->response->setJSON(['error' => 'Mercadoria não encontrada']);
+        }else{
+            return $this->response->setJSON(['valor' => $mercadoria['valor'], 'saldo' => $mercadoria['saldo']]);
+        }
     }
 }

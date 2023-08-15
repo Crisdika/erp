@@ -41,8 +41,7 @@ class MercadoriaRepository extends Model
     }
 
     public function obeterMercadoria($mercadoriaId){
-        $mercadoria = $this->find($mercadoriaId);
-        return json_encode($mercadoria);
+        return $this->where('id', $mercadoriaId)->first();
     }
 }
 

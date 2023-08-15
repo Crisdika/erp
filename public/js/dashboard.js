@@ -19,3 +19,42 @@ function formatarTelefone(input) {
     // Atualiza o valor do input
     input.value = telefone;
 }
+
+const selectMercadoria = document.getElementById('selecionarMercadoria');
+const valorInput = document.getElementById('InputValor');
+const quantidadeLabel = document.getElementById('labelqtdeprodestoque');
+const vendaTable = document.getElementById('vendaTable');
+const qtdeprodInput = document.getElementById('Inputquantidade');
+
+$(document).ready(function() {
+    $('#mercadoriaTable').DataTable();
+    $('#clienteTable').DataTable();
+});
+document.addEventListener("DOMContentLoaded", function (){
+    selectMercadoria.addEventListener("change", function() {
+        const mercadoriaId = selectMercadoria.value;
+        fetch(`get-mercadoria-data?mercadoriaId=${mercadoriaId}`)
+            .then(response => response.json())
+            .then(data=> {
+                valorInput.value = data.valor;
+                quantidadeLabel.innerHTML = `Quantidade do produto em estoque: ${data.saldo}`
+            })
+            .catch(error => console.error("Erro na requisição AJAX", error));
+    });
+});
+
+function addmercadoriatabela() {
+    const newrow = vendaTable.insertRow();
+    if(selectMercadoria.value == '' || selectMercadoria.value == 0){
+        alert('selecione um produto para ser adiciona a tabela')
+    }else{
+        newrow.innerHTML = `<td>${selectMercadoria.options[selectMercadoria.selectedIndex].text}</td>
+                             <td>${qtdeprodInput.value}</td>
+                             <td>${ parseFloat(valorInput.value) * parseFloat(qtdeprodInput.value)}</td>`
+        selectMercadoria.value = ''
+        valorInput.value = ''
+        qtdeprodInput.value = ''
+        quantidadeLabel.innerHTML = 'Quantidade do produto em estoque: 0'
+
+    }
+}

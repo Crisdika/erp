@@ -9,14 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script src="\js\dashboard.js"></script>
     <style>
         .btn-venda {
             color: #000;
             border: 1px solid #000;
-        }
-        #bodycliente{
-            width: 70%;
         }
     </style>
 </head>
@@ -107,11 +103,9 @@
                 <table id="clienteTable" class="table table-striped">
                     <thead>
                     <tr>
-<!--                        <th>ID</th>-->
                         <th>Descrição</th>
                         <th>Saldo</th>
                         <th>Valor</th>
-<!--                        <th>Ação</th>-->
                     </tr>
                     </thead>
                     <?php foreach ($mercadoriaReposiroty->listarMercadoria() as $mercadoria): ?>
@@ -141,7 +135,6 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="/editar/mercadoria">
-<!--                    <input type="hidden" name="id" id="id" value="">-->
                     <div class="form-group">
                         <label for="descricao">Descrição:</label>
                         <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descrição da mercadoria" required>
@@ -214,7 +207,7 @@
 </div>
 <!-- Modal ConsultarCliente Mercadoria -->
 <div class="modal fade" id="modalConsultarCliente" tabindex="-1" role="dialog" aria-labelledby="modalConsultarClienteLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalConsultarClienteLabel">Consultar Cliente</h5>
@@ -245,11 +238,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 <!-- Modal Venda -->
 <div class="modal fade" id="modalVenda" tabindex="-1" role="dialog" aria-labelledby="modalVendaLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -269,10 +257,9 @@
         </div>
     </div>
 </div>
-
 <!-- Modal criar venda -->
 <div class="modal fade" id="modalCriarVenda" tabindex="-1" role="dialog" aria-labelledby="modalCriarVendaLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalCriarVenda">Venda</h5>
@@ -280,34 +267,62 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="d-flex justify-content-between">
-                    <select name="selecionacliente" id="selecionacliente">
+        <div class="modal-body">
+            <form action="">
+                <div class="d-flex justify-content-between form-group">
+                    <select class="form-control" name="selecionacliente" id="selecionacliente">
+                        <option value="" disabled selected>Selecione seu cliente</option>
                         <?php foreach ($clienteRepository->listarCliente() as $cliente): ?>
-                        <option value="<?= $cliente['id'] ?> "> <?= $cliente['nome'] ?> </option>
+                            <option value="<?= $cliente['id'] ?> "> <?= $cliente['nome'] ?> </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Descrição da venda">
+                </div>
+                <div class="form-group">
+                    <div class="d-flex">
+                        <select id="selecionarMercadoria" class="form-control m-2">
+                            <option value="" disabled selected>Selecione sua mercadoria</option>
+                            <?php foreach ($mercadoriaReposiroty->listarMercadoria() as $mercadoria): ?>
+                                <option value="<?= $mercadoria['id'] ?>"><?= $mercadoria['desc'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                <label for="selecionarMercadoria" id="labelqtdeprodestoque" class="ml-2">Quantidade do produto em estoque: 0</label>
+                    <div class="d-flex">
+                        <input type="number" class="form-control m-2" name="InputValor" id="InputValor" placeholder="Valor do produto">
+                        <input type="number" class="form-control m-2" id="Inputquantidade" placeholder="Quantidade">
+                        <button type="button" class="btn-sm btn-primary" onclick="addmercadoriatabela()">Adicionar</button>
+                    </div>
+                </div>
                 <div>
-                    
+                    <table id="vendaTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>decrição</th>
+                                <th>quantidade</th>
+                                <th>valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Gerar venda" class="btn btn-primary">
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
-
-    $(document).ready(function() {
-        $('#mercadoriaTable').DataTable();
-        $('#clienteTable').DataTable();
-    });
-
-</script>
+<script src="\js\dashboard.js"></script>
 </body>
 </html>
-
-

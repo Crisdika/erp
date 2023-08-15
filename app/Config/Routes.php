@@ -34,7 +34,7 @@ $routes->set404Override();
 //gets
 $routes->get('/', 'Home::index');
 $routes->get('/dashboard','\App\Controllers\DashboardController::index');
-$routes->get('/obter/mercadoria(:num)', '\App\Controllers\MercadoriaController::obterMercadoria/$');
+$routes->get('/get-mercadoria-data', '\App\Controllers\MercadoriaController::obterMercadoria');
 
 //Posts
 $routes->post('/login/logar', '\App\Controllers\UsuarioController::logar');
