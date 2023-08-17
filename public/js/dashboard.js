@@ -1,3 +1,33 @@
+const selectMercadoria = document.getElementById('selecionarMercadoria');
+const valorInput = document.getElementById('InputValor');
+const quantidadeLabel = document.getElementById('labelqtdeprodestoque');
+const vendaTable = document.getElementById('vendaTable');
+const qtdeprodInput = document.getElementById('Inputquantidade');
+const totalVenda = document.getElementById('valortotal');
+const tbodyVenda = documente.getElementById('listavenda');
+
+$('#modalCriarVenda').on('hidden.bs.modal', function (){
+    tbodyVenda.innerHTML = ''
+})
+
+$(document).ready(function() {
+    $('#mercadoriaTable').DataTable();
+    $('#clienteTable').DataTable();
+});
+
+document.addEventListener("DOMContentLoaded", function (){
+    selectMercadoria.addEventListener("change", function() {
+        const mercadoriaId = selectMercadoria.value;
+        fetch(`get-mercadoria-data?mercadoriaId=${mercadoriaId}`)
+            .then(response => response.json())
+            .then(data=> {
+                valorInput.value = data.valor;
+                quantidadeLabel.innerHTML = `Quantidade do produto em estoque: ${data.saldo}`
+            })
+            .catch(error => console.error("Erro na requisição AJAX", error));
+    });
+});
+
 function formatarTelefone(input) {
     // Remove todos os caracteres não numéricos
     var telefone = input.value.replace(/\D/g, '');
@@ -20,41 +50,33 @@ function formatarTelefone(input) {
     input.value = telefone;
 }
 
-const selectMercadoria = document.getElementById('selecionarMercadoria');
-const valorInput = document.getElementById('InputValor');
-const quantidadeLabel = document.getElementById('labelqtdeprodestoque');
-const vendaTable = document.getElementById('vendaTable');
-const qtdeprodInput = document.getElementById('Inputquantidade');
+function getTotalProduto(valorProduto, quantidadeProduto){
+    let totalProduto = valorProduto * quantidadeProduto
+    return totalProduto;
+}
 
-$(document).ready(function() {
-    $('#mercadoriaTable').DataTable();
-    $('#clienteTable').DataTable();
-});
-document.addEventListener("DOMContentLoaded", function (){
-    selectMercadoria.addEventListener("change", function() {
-        const mercadoriaId = selectMercadoria.value;
-        fetch(`get-mercadoria-data?mercadoriaId=${mercadoriaId}`)
-            .then(response => response.json())
-            .then(data=> {
-                valorInput.value = data.valor;
-                quantidadeLabel.innerHTML = `Quantidade do produto em estoque: ${data.saldo}`
-            })
-            .catch(error => console.error("Erro na requisição AJAX", error));
-    });
-});
+function getTotalVenda(totalVenda, valorProduto){
+    let total = totalVenda + valorProduto
+    return total
+}
 
-function addmercadoriatabela() {
-    const newrow = vendaTable.insertRow();
+function addMercadoriaTabela() {
+    const newRow = vendaTable.insertRow();
+    let totalProd = getTotalProduto(valorInput.value, qtdeprodInput.value);
+
     if(selectMercadoria.value == '' || selectMercadoria.value == 0){
         alert('selecione um produto para ser adiciona a tabela')
-    }else{
-        newrow.innerHTML = `<td>${selectMercadoria.options[selectMercadoria.selectedIndex].text}</td>
+    }
+    else{
+        newRow.innerHTML = `<td>${selectMercadoria.options[selectMercadoria.selectedIndex].text}</td>
                              <td>${qtdeprodInput.value}</td>
-                             <td>${ parseFloat(valorInput.value) * parseFloat(qtdeprodInput.value)}</td>`
+                             <td>${totalProd}</td>`
+
         selectMercadoria.value = ''
         valorInput.value = ''
         qtdeprodInput.value = ''
         quantidadeLabel.innerHTML = 'Quantidade do produto em estoque: 0'
+        totalVenda.innerHTML = getTotalVenda(parseFloat(totalVenda.innerHTML) ,totalProd)
 
     }
 }

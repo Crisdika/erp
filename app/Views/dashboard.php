@@ -293,7 +293,7 @@
                     <div class="d-flex">
                         <input type="number" class="form-control m-2" name="InputValor" id="InputValor" placeholder="Valor do produto">
                         <input type="number" class="form-control m-2" id="Inputquantidade" placeholder="Quantidade">
-                        <button type="button" class="btn-sm btn-primary" onclick="addmercadoriatabela()">Adicionar</button>
+                        <button type="button" class="btn-sm btn-primary" onclick="addMercadoriaTabela()">Adicionar</button>
                     </div>
                 </div>
                 <div>
@@ -305,24 +305,26 @@
                                 <th>valor total</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-
-                            </tr>
+                        <tbody id="listavenda">
+                            <tr></tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-                <div class="modal-footer">
-                    <input type="submit" value="Gerar venda" class="btn btn-primary">
+
+                <div class="form-group d-flex flex-row-reverse">
+                    <strong><p class="text text-primary">Valor total: R$<a id="valortotal">0</a></p></strong>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Gerar venda" class="btn btn-primary">
+            </div>
             </form>
         </div>
     </div>
 </div>
+</body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="\js\dashboard.js"></script>
-</body>
 </html>
